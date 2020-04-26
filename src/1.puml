@@ -1,0 +1,37 @@
+@startuml
+|教务处|
+start
+:安排考试;
+:考试安排表;
+|教师|
+:出卷;
+fork
+:出A、B试卷;
+fork again
+:打印审批表;
+|系主任|
+:审批签字;
+:打印审批表;
+end fork
+|教务处|
+:打印试卷;
+|学生|
+:参加考试;
+|教师|
+:阅卷出成绩;
+fork
+:生成成绩单;
+|教务处|
+if (有不及格？) then (有)
+:安排补考;
+if(补考结束?)then (是)
+else (否)
+:补考安排表;
+endif
+endif
+fork again
+|教师|
+:装订存档;
+end fork
+end
+@enduml
